@@ -1,22 +1,54 @@
-from math import sqrt
+class Bird:
+    def __init__(self, name, size):
+        self.name = name
+        self.size = size
 
-message = ('Добро пожаловать в самую лучшую программу для вычисления '
-           'квадратного корня из заданного числа')
-
-
-def calculate_square_root(number):
-    """Вычисляет квадратный корень."""
-    return sqrt(number)
+    def describe(self, full=False):
+        return f'Размер птицы {self.name} — {self.size}.'
 
 
-def calc(your_number):
-    """Вычисляет квадратный корень из введённого вами числа."""
-    otvet = calculate_square_root(your_number)
-    if your_number <= 0:
-        return
-    print('Мы вычислили квадратный корень из введённого вами числа. '
-          'Это будет: ' + str(otvet))
+class Parrot(Bird):
+    def __init__(self, name, size, color):
+        super().__init__(name, size)
+        self.color = color
+
+    def describe(self, full=False):
+        if full:
+            return (f'Попугай {self.name} — заметная птица, '
+                    f'окрас её перьев — {self.color}, '
+                    f'а размер — {self.size}. '
+                    'Интересный факт: попугаи чувствуют ритм, '
+                    'а вовсе не бездумно двигаются под музыку. '
+                    'Если сменить композицию, '
+                    'то и темп движений птицы изменится.')
+        return super().describe()
+
+    # Добавьте метод repeat().
 
 
-print(message)
-calc(25.5)
+class Penguin(Bird):
+    def __init__(self, name, size, genus):
+        super().__init__(name, size)
+        self.genus = genus
+
+    def describe(self, full=False):
+        if full:
+            return (f'Размер пингвина {self.name} '
+                    f'из рода {self.genus} — {self.size}. '
+                    'Интересный факт: однажды группа геологов-разведчиков '
+                    'похитила пингвинье яйцо, '
+                    'и их принялась преследовать вся стая, '
+                    'не пытаясь, впрочем, при этом нападать. '
+                    'Посовещавшись, похитители вернули птицам яйцо, '
+                    'и те отстали. ')
+        return super().describe()
+
+    # Добавьте метод swimming().
+
+
+kesha = Parrot('Ара', 'средний', 'красный')
+kowalski = Penguin('Королевский', 'большой', 'Aptenodytes')
+
+
+print(kesha.repeat('Кеша хороший!'))
+print(kowalski.swimming())
